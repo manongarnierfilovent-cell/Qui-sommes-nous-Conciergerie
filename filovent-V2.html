@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre Conciergerie — Filovent</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #081C37;
+    --blue: #015aa5;
+    --cyan: #04abef;
+    --red: #af141c;
+    --white: #ffffff;
+    --light-bg: #f7f9fc;
+    --light-blue-bg: #edf4fb;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a5568;
+    --text-light: #718096;
+    --border: #e2e8f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    box-shadow: 0 1px 12px rgba(8,28,55,0.08);
+  }
+  .logo img { height: 36px; }
+  .header-cta {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 9999px;
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity .2s;
+  }
+  .header-cta:hover { opacity: .85; }
+
+  /* ─── SECTION LABELS ─── */
+  .sur-titre {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  /* ─── BLOC 1 — HERO ─── */
+  .hero {
+    background: var(--navy);
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(1,90,165,.25) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+  .hero-text .sur-titre { color: var(--cyan); }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--cyan); }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(4,171,239,.15);
+    border: 1px solid rgba(4,171,239,.3);
+    border-radius: 9999px;
+    padding: 10px 20px;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  .hero-badge::before {
+    content: '✓';
+    width: 20px;
+    height: 20px;
+    background: var(--cyan);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--navy);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* Photo hero — Version A: Manon seule */
+  .hero-photo-a {
+    display: flex;
+    justify-content: center;
+  }
+  .hero-photo-a .photo-frame {
+    width: 340px;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid rgba(4,171,239,.3);
+    background: linear-gradient(135deg, #1a3a5c, #0d2640);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .photo-placeholder {
+    text-align: center;
+    color: rgba(255,255,255,.5);
+  }
+  .photo-placeholder .icon {
+    font-size: 64px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .photo-placeholder p {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .05em;
+  }
+  .photo-label {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(8,28,55,.85);
+    border: 1px solid rgba(4,171,239,.3);
+    border-radius: 9999px;
+    padding: 8px 20px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-cta {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 9999px;
+    padding: 14px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity .2s, transform .2s;
+  }
+  .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,.4);
+    border-radius: 9999px;
+    padding: 14px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color .2s;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,.8); }
+
+  /* ─── SECTION PREUVES ─── */
+  .preuves {
+    background: var(--light-bg);
+    padding: 80px 48px;
+  }
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 56px;
+  }
+  .section-header h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .cas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto 56px;
+  }
+  .cas-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .cas-card:hover {
+    box-shadow: 0 12px 40px rgba(8,28,55,.1);
+    transform: translateY(-2px);
+  }
+  .cas-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+  }
+  .cas-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .cas-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    flex-shrink: 0;
+  }
+  .cas-meta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+  .cas-problem {
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .cas-result {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .cas-result-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .cas-result-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #166534;
+    line-height: 1.5;
+  }
+
+  /* Citation principale */
+  .citation-bloc {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 40px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .citation-quote-mark {
+    font-size: 80px;
+    font-weight: 800;
+    color: var(--cyan);
+    line-height: .8;
+    flex-shrink: 0;
+    opacity: .4;
+  }
+  .citation-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white);
+    font-style: italic;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .citation-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cyan);
+    margin-top: 12px;
+    font-style: normal;
+  }
+
+  /* ─── BLOC 3 — ÉQUIPE (2 versions) ─── */
+  .equipe {
+    padding: 80px 48px;
+    background: var(--white);
+  }
+  .equipe-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Version A — Manon grande + équipe petite */
+  .equipe-version-a {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .equipe-photo-principale {
+    position: relative;
+  }
+  .equipe-photo-principale .photo-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1a3a5c, #0d2640);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .equipe-mini-photos {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    justify-content: center;
+  }
+  .mini-photo {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a4a6c, #1a3a5c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border);
+    font-size: 20px;
+    color: rgba(255,255,255,.5);
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .mini-photo:hover { border-color: var(--cyan); }
+  .mini-photo.active { border-color: var(--cyan); }
+  .mini-photo-label {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+  .equipe-text h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .equipe-description {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+  .equipe-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .pill {
+    background: var(--light-blue-bg);
+    color: var(--blue);
+    border-radius: 9999px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* Version B — Photos individuelles cartes (style Filovent "qui sommes nous") */
+  .equipe-version-b { display: none; }
+  .equipe-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .equipe-card {
+    text-align: center;
+    padding: 32px 24px;
+    background: var(--light-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: box-shadow .2s, transform .2s;
+  }
+  .equipe-card:hover {
+    box-shadow: 0 12px 40px rgba(8,28,55,.1);
+    transform: translateY(-3px);
+  }
+  .equipe-card.featured {
+    background: var(--navy);
+    border-color: transparent;
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    padding: 40px 48px;
+  }
+  .equipe-card-photo {
+    width: 96px; height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a4a6c, #1a3a5c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    border: 3px solid var(--border);
+    flex-shrink: 0;
+    margin: 0 auto 16px;
+  }
+  .equipe-card.featured .equipe-card-photo {
+    width: 120px; height: 120px;
+    border-color: var(--cyan);
+    margin: 0;
+  }
+  .equipe-card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .equipe-card.featured .equipe-card-name { color: var(--white); font-size: 20px; }
+  .equipe-card-role {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 12px;
+  }
+  .equipe-card.featured .equipe-card-role { color: var(--cyan); }
+  .equipe-card-desc {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .equipe-card.featured .equipe-card-desc { color: rgba(255,255,255,.75); font-size: 15px; }
+
+  /* Toggle versions */
+  .version-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .toggle-btn {
+    background: var(--light-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 9999px;
+    padding: 8px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .toggle-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+
+  /* ─── BLOC 4 — COMMENT ON TRAVAILLE (icônes style Tourlane) ─── */
+  .process {
+    background: var(--light-bg);
+    padding: 80px 48px;
+  }
+  .process-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 64px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 52px;
+    left: calc(33.33% / 2 + 24px);
+    right: calc(33.33% / 2 + 24px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    z-index: 0;
+  }
+  .process-step {
+    text-align: center;
+    padding: 40px 28px;
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .process-step:hover {
+    box-shadow: 0 12px 40px rgba(8,28,55,.1);
+    transform: translateY(-3px);
+  }
+  .process-step.problem {
+    background: var(--navy);
+    border-color: transparent;
+  }
+  .step-icon-wrap {
+    width: 80px; height: 80px;
+    margin: 0 auto 24px;
+    background: var(--light-blue-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .process-step.problem .step-icon-wrap {
+    background: rgba(4,171,239,.15);
+  }
+  /* SVG Icons inline — style illustratif */
+  .step-icon { width: 40px; height: 40px; }
+
+  .step-number {
+    position: absolute;
+    top: -4px; right: -4px;
+    width: 24px; height: 24px;
+    background: var(--blue);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .process-step.problem .step-number { background: var(--cyan); color: var(--navy); }
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .process-step.problem .step-title { color: var(--white); }
+  .step-desc {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .process-step.problem .step-desc { color: rgba(255,255,255,.7); }
+
+  /* Valeurs en icônes */
+  .valeurs-titre {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 32px;
+  }
+  .valeurs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .valeur-item {
+    text-align: center;
+    padding: 28px 16px;
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: box-shadow .2s;
+  }
+  .valeur-item:hover { box-shadow: 0 8px 24px rgba(8,28,55,.08); }
+  .valeur-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .valeur-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .valeur-desc {
+    font-size: 11px;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ─── BLOC 5 — CITATIONS ─── */
+  .citations {
+    padding: 80px 48px;
+    background: var(--white);
+  }
+  .citations-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .citations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .citation-card {
+    background: var(--light-bg);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .citation-card::before {
+    content: '"';
+    position: absolute;
+    top: 16px; left: 24px;
+    font-size: 60px;
+    font-weight: 800;
+    color: var(--cyan);
+    opacity: .3;
+    line-height: 1;
+  }
+  .citation-card-text {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    padding-top: 16px;
+  }
+  .citation-card-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .citation-placeholder {
+    background: var(--light-bg);
+    border-radius: 16px;
+    padding: 32px;
+    border: 2px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    color: var(--text-light);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* ─── BLOC 6 — CTA FINAL ─── */
+  .cta-final {
+    background: var(--navy);
+    padding: 80px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(4,171,239,.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-final-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-final h2 {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .cta-final p {
+    font-size: 16px;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .btn-cta-main {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 9999px;
+    padding: 16px 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .btn-cta-main:hover { opacity: .9; transform: translateY(-1px); }
+  .btn-cta-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,.35);
+    border-radius: 9999px;
+    padding: 16px 32px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .2s;
+  }
+  .btn-cta-ghost:hover { border-color: rgba(255,255,255,.7); }
+  .cta-contact {
+    font-size: 14px;
+    color: rgba(255,255,255,.5);
+  }
+  .cta-contact a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+
+  /* ─── BADGE "VERSION DÉMO" ─── */
+  .demo-badge {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--red);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    z-index: 999;
+  }
+
+  /* ─── NOTE DÉMO ÉQUIPE ─── */
+  .demo-note {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 12px;
+    color: #92400e;
+    text-align: center;
+    margin-top: 24px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .cas-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .process-steps::before { display: none; }
+    .valeurs-grid { grid-template-columns: repeat(3, 1fr); }
+    .citations-grid { grid-template-columns: 1fr; }
+    .equipe-version-a { grid-template-columns: 1fr; }
+    .equipe-cards-grid { grid-template-columns: 1fr; }
+    .equipe-card.featured { grid-column: span 1; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="https://www.filovent.com/storage/public/888/logoslogo-6931809695945.webp" alt="Filovent">
+  </div>
+  <a href="#cta" class="header-cta">Parler à notre équipe</a>
+</header>
+
+<!-- BLOC 1 — HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="sur-titre">Notre service de conciergerie</p>
+      <h1>Une équipe à<br><span>chaque étape</span><br>de votre voyage.</h1>
+      <div class="hero-badge">
+        Inclus dans chaque réservation — sans option, sans supplément
+      </div>
+      <div class="hero-cta">
+        <a href="#cta" class="btn-primary">Parler à notre équipe</a>
+        <a href="#preuves" class="btn-secondary">Voir nos cas concrets</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-a">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <span class="icon">👤</span>
+          <p>Photo Manon<br><small>(à intégrer)</small></p>
+        </div>
+        <div class="photo-label">Manon · Responsable Conciergerie</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOC 2 — PREUVES + CITATIONS -->
+<section class="preuves" id="preuves">
+  <div class="section-header">
+    <p class="sur-titre">Ce que "être là" veut dire concrètement</p>
+    <h2>Trois situations où<br>notre conciergerie a tout changé.</h2>
+  </div>
+
+  <div class="cas-grid">
+    <!-- Cas 1 -->
+    <div class="cas-card">
+      <div class="cas-header">
+        <div class="cas-dot"></div>
+        <span class="cas-meta">Conrad · Écosse · Août 2024</span>
+      </div>
+      <p class="cas-problem">Faillite du partenaire à J-10. Départ menacé pour toute la famille.</p>
+      <div class="cas-result">
+        <span class="cas-result-icon">✓</span>
+        <span class="cas-result-text">Nouveau bateau sécurisé. Frais couverts. Départ maintenu.</span>
+      </div>
+    </div>
+
+    <!-- Cas 2 -->
+    <div class="cas-card">
+      <div class="cas-header">
+        <div class="cas-dot"></div>
+        <span class="cas-meta">Morin · Palma · Juin 2024</span>
+      </div>
+      <p class="cas-problem">Bateau jamais livré à l'arrivée. 5 mois de bataille administrative.</p>
+      <div class="cas-result">
+        <span class="cas-result-icon">✓</span>
+        <span class="cas-result-text">Nouveau bateau trouvé. 4 665 € remboursés directement.</span>
+      </div>
+    </div>
+
+    <!-- Cas 3 -->
+    <div class="cas-card">
+      <div class="cas-header">
+        <div class="cas-dot"></div>
+        <span class="cas-meta">Gourdon · Palma · Août 2025</span>
+      </div>
+      <p class="cas-problem">Bateau inutilisable au check-in. 12 personnes bloquées à quai.</p>
+      <div class="cas-result">
+        <span class="cas-result-icon">✓</span>
+        <span class="cas-result-text">Dufour 530 sécurisé. Deux semaines sauvées. L'été suivant déjà réservé.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Citation -->
+  <div class="citation-bloc">
+    <div class="citation-quote-mark">"</div>
+    <div>
+      <p class="citation-text">Je me fais l'interprète de l'équipage pour vous remercier de la décision prise.</p>
+      <p class="citation-author">Jacques Morin · Novembre 2024</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOC 3 — ÉQUIPE (2 versions à choisir) -->
+<section class="equipe" id="equipe">
+  <div class="equipe-inner">
+    <div class="section-header">
+      <p class="sur-titre">Derrière chaque réservation</p>
+      <h2>Une personne responsable<br>de votre voyage.</h2>
+    </div>
+
+    <!-- Toggle -->
+    <div class="version-toggle">
+      <button class="toggle-btn active" onclick="showVersion('a')">Version A — Manon + équipe</button>
+      <button class="toggle-btn" onclick="showVersion('b')">Version B — Fiches individuelles</button>
+    </div>
+
+    <!-- Version A -->
+    <div class="equipe-version-a" id="version-a">
+      <div class="equipe-photo-principale">
+        <div class="photo-frame">
+          <div class="photo-placeholder" style="color:rgba(255,255,255,.4)">
+            <span class="icon">👤</span>
+            <p>Photo Manon<br><small>(grande)</small></p>
+          </div>
+        </div>
+        <div class="equipe-mini-photos">
+          <div>
+            <div class="mini-photo active">👤</div>
+            <div class="mini-photo-label">Manon</div>
+          </div>
+          <div>
+            <div class="mini-photo">👤</div>
+            <div class="mini-photo-label">India</div>
+          </div>
+          <div>
+            <div class="mini-photo">👤</div>
+            <div class="mini-photo-label">Équipe</div>
+          </div>
+        </div>
+        <div class="demo-note">📸 Photos à intégrer : Manon (principale) + India + reste de l'équipe</div>
+      </div>
+      <div class="equipe-text">
+        <h2>Manon et son équipe — à vos côtés à chaque étape.</h2>
+        <p class="equipe-description">
+          Pas de hotline anonyme. Pas de ticket de support. Une personne qui connaît votre dossier, anticipe vos besoins, et reste disponible jusqu'au retour à quai.
+        </p>
+        <p class="equipe-description">À taille humaine. Attentive à chaque détail.</p>
+        <div class="equipe-pills">
+          <span class="pill">Disponible avant le départ</span>
+          <span class="pill">Joignable en navigation</span>
+          <span class="pill">Présente en cas de problème</span>
+        </div>
+        <a href="#cta" class="btn-primary">Parler à notre équipe</a>
+      </div>
+    </div>
+
+    <!-- Version B — Fiches individuelles style Filovent -->
+    <div class="equipe-version-b" id="version-b">
+      <div class="equipe-cards-grid">
+        <!-- Manon — carte principale -->
+        <div class="equipe-card featured">
+          <div class="equipe-card-photo">👤</div>
+          <div>
+            <div class="equipe-card-name">Manon Garnier</div>
+            <div class="equipe-card-role">Responsable Guest Relations & Conciergerie</div>
+            <p class="equipe-card-desc">Pas de hotline anonyme. Pas de ticket. Une personne qui connaît votre dossier de A à Z — et qui reste disponible jusqu'au retour à quai. C'est elle qui a géré ces trois situations.</p>
+          </div>
+        </div>
+        <!-- India -->
+        <div class="equipe-card">
+          <div class="equipe-card-photo">👤</div>
+          <div class="equipe-card-name">India</div>
+          <div class="equipe-card-role">Conciergerie</div>
+          <p class="equipe-card-desc">À vos côtés pour préparer chaque détail avant le départ.</p>
+        </div>
+        <!-- Membre 3 -->
+        <div class="equipe-card">
+          <div class="equipe-card-photo">👤</div>
+          <div class="equipe-card-name">L'équipe</div>
+          <div class="equipe-card-role">Conciergerie & Support</div>
+          <p class="equipe-card-desc">Une équipe à taille humaine, attentive à chaque détail.</p>
+        </div>
+        <!-- Membre 4 -->
+        <div class="equipe-card">
+          <div class="equipe-card-photo">👤</div>
+          <div class="equipe-card-name">+ Membres</div>
+          <div class="equipe-card-role">À compléter</div>
+          <p class="equipe-card-desc">Photos et descriptions à intégrer selon l'équipe finale.</p>
+        </div>
+      </div>
+      <div class="demo-note">📸 Photos individuelles à intégrer pour chaque membre de l'équipe</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOC 4 — COMMENT ON TRAVAILLE + CE QU'ON APPORTE -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="section-header">
+      <p class="sur-titre">Comment on travaille</p>
+      <h2>Avant, pendant, et si problème.</h2>
+    </div>
+
+    <div class="process-steps">
+      <!-- Étape 1 -->
+      <div class="process-step">
+        <div class="step-icon-wrap">
+          <span class="step-number">1</span>
+          <svg class="step-icon" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" stroke="#015aa5" stroke-width="2"/>
+            <path d="M13 20h14M20 13v14" stroke="#015aa5" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="4" fill="#04abef" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="step-title">Avant le départ</div>
+        <p class="step-desc">On prépare tout avec vous. Conseil personnalisé, formalités, logistique. Vous embarquez l'esprit libre.</p>
+      </div>
+
+      <!-- Étape 2 -->
+      <div class="process-step">
+        <div class="step-icon-wrap">
+          <span class="step-number">2</span>
+          <svg class="step-icon" viewBox="0 0 40 40" fill="none">
+            <path d="M8 28 C8 28 12 12 20 12 C28 12 32 28 32 28" stroke="#015aa5" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="28" r="4" fill="#04abef" opacity=".4"/>
+            <path d="M20 24v-8" stroke="#015aa5" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="8" r="2.5" fill="#015aa5"/>
+          </svg>
+        </div>
+        <div class="step-title">Pendant la navigation</div>
+        <p class="step-desc">Joignable. Toujours. Vous naviguez — on s'occupe du reste.</p>
+      </div>
+
+      <!-- Étape 3 — problème, fond navy -->
+      <div class="process-step problem">
+        <div class="step-icon-wrap">
+          <span class="step-number">3</span>
+          <svg class="step-icon" viewBox="0 0 40 40" fill="none">
+            <path d="M20 8 L34 30 H6 Z" stroke="#04abef" stroke-width="2" stroke-linejoin="round" fill="rgba(4,171,239,.1)"/>
+            <path d="M20 18v7" stroke="#04abef" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="28" r="1.5" fill="#04abef"/>
+          </svg>
+        </div>
+        <div class="step-title">Si problème</div>
+        <p class="step-desc">On prend en main. On intervient. Vos vacances ne s'arrêtent pas là.</p>
+      </div>
+    </div>
+
+    <!-- Valeurs -->
+    <p class="valeurs-titre">Notre accompagnement — inclus, sans exception</p>
+    <div class="valeurs-grid">
+      <div class="valeur-item">
+        <span class="valeur-icon">⭐</span>
+        <div class="valeur-name">Qualité</div>
+        <div class="valeur-desc">Depuis 1995, 38 000 voyageurs nous ont fait confiance.</div>
+      </div>
+      <div class="valeur-item">
+        <span class="valeur-icon">🤝</span>
+        <div class="valeur-name">Proximité</div>
+        <div class="valeur-desc">Un conseiller dédié. De A à Z.</div>
+      </div>
+      <div class="valeur-item">
+        <span class="valeur-icon">⚡</span>
+        <div class="valeur-name">Facilité</div>
+        <div class="valeur-desc">Simple. Rapide. Réactif.</div>
+      </div>
+      <div class="valeur-item">
+        <span class="valeur-icon">💬</span>
+        <div class="valeur-name">Contact</div>
+        <div class="valeur-desc">Une vraie relation humaine.</div>
+      </div>
+      <div class="valeur-item">
+        <span class="valeur-icon">🛡️</span>
+        <div class="valeur-name">Protection</div>
+        <div class="valeur-desc">Votre intérêt d'abord. Toujours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOC 5 — AUTRES CITATIONS -->
+<section class="citations" id="citations">
+  <div class="citations-inner">
+    <div class="section-header">
+      <p class="sur-titre">Ils ont vécu l'imprévu</p>
+      <h2>Voici ce qu'ils en disent.</h2>
+    </div>
+    <div class="citations-grid">
+      <div class="citation-card">
+        <p class="citation-card-text">Je me fais l'interprète de l'équipage pour vous remercier de la décision prise.</p>
+        <p class="citation-card-author">Jacques Morin · Novembre 2024</p>
+      </div>
+      <div class="citation-placeholder">
+        📝 Citation 2 à intégrer
+      </div>
+      <div class="citation-placeholder">
+        📝 Citation 3 à intégrer
+      </div>
+      <div class="citation-placeholder">
+        📝 Citation 4 à intégrer (Gourdon ?)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOC 6 — CTA FINAL -->
+<section class="cta-final" id="cta">
+  <div class="cta-final-inner">
+    <p class="sur-titre" style="color:var(--cyan)">Votre projet, notre engagement</p>
+    <h2>Votre projet mérite<br>une vraie conversation.</h2>
+    <p>Notre équipe vous répond sous 24h.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-cta-main">Parler à notre équipe</a>
+      <a href="#" class="btn-cta-ghost">Obtenir un devis</a>
+      <a href="https://www.filovent.com" class="btn-cta-ghost">Découvrir Filovent</a>
+    </div>
+    <p class="cta-contact">
+      📞 <a href="tel:+33170809752">+33 1 70 80 97 52</a> · Lun–Sam · 9h–18h
+    </p>
+  </div>
+</section>
+
+<div class="demo-badge">Version démo v10</div>
+
+<script>
+  function showVersion(v) {
+    const a = document.getElementById('version-a');
+    const b = document.getElementById('version-b');
+    const btns = document.querySelectorAll('.toggle-btn');
+    if (v === 'a') {
+      a.style.display = 'grid';
+      b.style.display = 'none';
+      btns[0].classList.add('active');
+      btns[1].classList.remove('active');
+    } else {
+      a.style.display = 'none';
+      b.style.display = 'block';
+      btns[0].classList.remove('active');
+      btns[1].classList.add('active');
+    }
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Mini photos toggle
+  document.querySelectorAll('.mini-photo').forEach((p, i) => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('.mini-photo').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

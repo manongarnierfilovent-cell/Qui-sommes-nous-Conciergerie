@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre Conciergerie — Filovent</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:   #081C37;
+  --red:    #af141c;
+  --blue-1: #015aa5;
+  --blue-2: #04abef;
+  --blue-3: #00b8f8;
+  --gray-0: #f5f2ed;
+  --gray-2: #e8e6df;
+  --gray-3: #f6f5f3;
+  --gray-4: #f6f4ef;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', Inter, Arial, sans-serif;
+  color: var(--blue);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+.container { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+
+.label {
+  font-size: 0.65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 3.5px;
+  color: var(--red); display: block; margin-bottom: 12px;
+}
+
+/* ══ BOUTONS ══ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background-color: #af141c; color: #fff;
+  font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 14px 28px; border: 2px solid #af141c;
+  border-radius: 100px; text-decoration: none; cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.btn-primary:hover { background-color: transparent; color: #af141c; }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background-color: transparent; color: #af141c;
+  font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 14px 28px; border: 2px solid #af141c;
+  border-radius: 100px; text-decoration: none; cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.btn-secondary:hover { background-color: #af141c; color: #fff; }
+
+.btn-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  background-color: #fff; color: var(--blue);
+  font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 14px 28px; border: 2px solid #fff;
+  border-radius: 100px; text-decoration: none; cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.btn-white:hover { background-color: transparent; color: #fff; }
+
+/* ══════════════════════════════
+   BLOC 1 — HERO
+══════════════════════════════ */
+.hero {
+  background: #fff;
+  padding: 72px 0 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 560px;
+}
+
+/* Blob / forme géométrique abstraite en fond */
+.hero-blob {
+  position: absolute;
+  top: -120px; right: -160px;
+  width: 680px; height: 680px;
+  background: radial-gradient(ellipse at 60% 40%, #c8eaf8 0%, #e4f4fc 40%, transparent 72%);
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  animation: blobShift 12s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-blob-2 {
+  position: absolute;
+  bottom: 40px; left: -100px;
+  width: 380px; height: 380px;
+  background: radial-gradient(ellipse, #ddf0fa 0%, transparent 70%);
+  border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+@keyframes blobShift {
+  0%   { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+  50%  { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+  100% { border-radius: 55% 45% 65% 35% / 45% 55% 45% 55%; }
+}
+
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.hero-left { padding-bottom: 80px; }
+
+/* pill crème */
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gray-0);
+  border: 1px solid var(--gray-2);
+  border-radius: 100px;
+  padding: 7px 16px;
+  margin-bottom: 28px;
+}
+.hero-pill-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue); flex-shrink: 0;
+  animation: blink 2.5s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.hero-pill span {
+  font-size: 0.66rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2.5px;
+  color: var(--blue);
+}
+
+/* Titre — une seule couleur bleu marine */
+.hero h1 {
+  font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1.0;
+  letter-spacing: -2px;
+  margin-bottom: 18px;
+}
+
+.hero-sub {
+  font-size: 1rem; font-weight: 400;
+  color: #666; line-height: 1.75;
+  margin-bottom: 20px; max-width: 420px;
+}
+
+.hero-inclu {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gray-3);
+  border: 1px solid var(--gray-2);
+  border-left: 3px solid var(--blue-2);
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 34px;
+}
+.hero-inclu svg { color: var(--blue-2); flex-shrink: 0; }
+.hero-inclu p { font-size: 0.82rem; font-weight: 700; color: var(--blue); }
+
+/* ── Équipe hero — droite ── */
+.hero-right {
+  position: relative;
+  padding-top: 20px;
+  z-index: 2;
+}
+
+.hero-team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Manon — grande carte horizontale */
+.team-card-main {
+  display: flex;
+  gap: 0;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(8,28,55,0.11);
+  border: 1px solid var(--gray-2);
+}
+
+.team-card-main .tc-photo {
+  width: 160px; flex-shrink: 0;
+  overflow: hidden;
+}
+.team-card-main .tc-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  display: block;
+}
+
+.team-card-main .tc-info {
+  padding: 22px 22px;
+  display: flex; flex-direction: column; justify-content: center;
+  flex: 1;
+}
+
+.tc-name {
+  font-size: 1.1rem; font-weight: 800;
+  color: var(--blue); margin-bottom: 4px;
+}
+.tc-role {
+  font-size: 0.65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--red); margin-bottom: 12px;
+}
+.tc-quote {
+  font-size: 0.8rem; font-style: italic;
+  color: #666; line-height: 1.6;
+  border-left: 2px solid var(--gray-2);
+  padding-left: 10px;
+}
+
+/* India + autres — rangée basse */
+.team-row-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* India */
+.team-card-sm {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(8,28,55,0.09);
+  border: 1px solid var(--gray-2);
+  display: flex; flex-direction: column;
+}
+.team-card-sm .tc-photo-sm {
+  height: 140px; overflow: hidden;
+}
+.team-card-sm .tc-photo-sm img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  display: block;
+}
+.team-card-sm .tc-info-sm {
+  padding: 14px 16px;
+}
+.tc-name-sm { font-size: 0.9rem; font-weight: 800; color: var(--blue); margin-bottom: 2px; }
+.tc-role-sm {
+  font-size: 0.6rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--red);
+}
+
+/* carte "& l'équipe" */
+.team-card-rest {
+  background: var(--blue);
+  border-radius: 14px;
+  padding: 20px 18px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(8,28,55,0.14);
+  min-height: 160px;
+}
+.team-rest-avatars {
+  display: flex; gap: -6px;
+}
+.team-rest-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  margin-left: -8px; font-size: 0.7rem; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.team-rest-av:first-child { margin-left: 0; }
+.team-rest-label {
+  font-size: 0.78rem; font-weight: 700;
+  color: #fff; line-height: 1.4;
+}
+.team-rest-sub {
+  font-size: 0.65rem; color: rgba(255,255,255,0.55);
+  margin-top: 4px;
+}
+
+/* vague hero → preuves */
+.hero-wave { line-height: 0; position: relative; z-index: 1; }
+.hero-wave svg { display: block; width: 100%; }
+
+/* ══════════════════════════════
+   BLOC 2 — PREUVES
+   fond : var(--gray-0)
+══════════════════════════════ */
+.section-preuves {
+  background: var(--gray-0);
+  padding: 80px 0 0;
+}
+
+.preuves-header {
+  max-width: 680px; margin: 0 auto 56px; text-align: center;
+}
+
+/* style titre double : label small caps + grand titre condensé */
+.title-group .t-small {
+  display: block;
+  font-size: 0.72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 3px;
+  color: var(--blue); margin-bottom: 8px;
+}
+.title-group .t-big {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900; color: var(--blue);
+  line-height: 1.08; letter-spacing: -1px;
+}
+.title-group .t-big .t-light {
+  font-weight: 300; color: var(--blue-2);
+}
+
+/* 3 cartes — redesign : layout horizontal empilé */
+.cas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.cas-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(8,28,55,0.07);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+  border-top: 3px solid transparent;
+}
+.cas-card:nth-child(1) { border-top-color: var(--blue-2); }
+.cas-card:nth-child(2) { border-top-color: var(--blue-1); }
+.cas-card:nth-child(3) { border-top-color: var(--red); }
+.cas-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(8,28,55,0.12); }
+
+.cas-head {
+  padding: 26px 26px 18px;
+}
+
+.cas-meta {
+  font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--blue-2); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+.cas-meta::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 1px;
+  background: var(--blue-2);
+}
+
+.cas-result {
+  font-size: 1.08rem; font-weight: 800;
+  color: var(--blue); line-height: 1.4;
+}
+
+.cas-divider {
+  height: 1px; background: var(--gray-2);
+  margin: 0 26px;
+}
+
+.cas-body {
+  padding: 18px 26px 22px;
+  flex: 1; display: flex; flex-direction: column; justify-content: space-between;
+}
+
+.cas-detail {
+  font-size: 0.83rem; color: #666; line-height: 1.72;
+  margin-bottom: 18px;
+}
+
+.cas-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(175,20,28,0.07); border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 0.6rem; font-weight: 800;
+  color: var(--red); text-transform: uppercase; letter-spacing: 1.2px;
+}
+.cas-tag::before { content: '✓'; }
+
+/* vague entre cards et citation VALIDÉE */
+.preuves-wave { line-height: 0; margin-top: 60px; }
+.preuves-wave svg { display: block; width: 100%; }
+
+/* ── Citation unique (plus claire) ── */
+.citation-bloc {
+  background: #1e4976;   /* bleu plus clair que --blue */
+  padding: 60px 0;
+}
+
+.citation-single {
+  max-width: 760px; margin: 0 auto; text-align: center;
+}
+
+.cit-mark {
+  font-size: 3rem; color: var(--blue-2); opacity: 0.45;
+  font-family: Georgia, serif; line-height: 1; margin-bottom: 16px;
+}
+
+.cit-text {
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  font-style: italic; font-weight: 400;
+  color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 22px;
+}
+
+.cit-author {
+  font-size: 0.65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 3px; color: var(--blue-2);
+}
+.cit-role {
+  font-size: 0.6rem; color: rgba(255,255,255,0.35);
+  letter-spacing: 1px; margin-top: 4px;
+}
+
+/* wave citation → process */
+.cit-wave { line-height: 0; }
+.cit-wave svg { display: block; width: 100%; }
+
+/* ══════════════════════════════
+   BLOC 3 — PROCESS
+   fond blanc
+══════════════════════════════ */
+.section-process {
+  background: #fff;
+  padding: 90px 0 80px;
+}
+
+/* même style titre que "Ce que être là" */
+.section-process .title-group { text-align: center; margin-bottom: 70px; }
+
+/* 3 colonnes illustrations à la main */
+.steps-cols {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr 48px 1fr;
+  align-items: start;
+  gap: 0;
+  margin-bottom: 56px;
+}
+
+.step-col { text-align: center; padding: 0 12px; }
+
+/* illustration SVG style "dessiné à la main" */
+.step-illo {
+  width: 100px; height: 100px;
+  margin: 0 auto 26px;
+  position: relative;
+}
+.step-illo svg { width: 100%; height: 100%; }
+
+.step-col h3 {
+  font-size: 0.95rem; font-weight: 800;
+  color: var(--blue); margin-bottom: 10px; line-height: 1.45;
+}
+.step-col p { font-size: 0.83rem; color: #666; line-height: 1.78; }
+
+/* flèche dessinée entre étapes */
+.step-arrow-wrap {
+  display: flex; align-items: center; justify-content: center;
+  padding-top: 36px;
+}
+.step-arrow-wrap svg { width: 36px; height: 36px; }
+
+.process-cta { text-align: center; }
+
+/* vague process → valeurs */
+.process-wave { line-height: 0; }
+.process-wave svg { display: block; width: 100%; }
+
+/* ══════════════════════════════
+   VALEURS — fond beige
+══════════════════════════════ */
+.section-valeurs { background: var(--gray-0); padding: 80px 0 90px; }
+
+.valeurs-header { text-align: center; max-width: 600px; margin: 0 auto 52px; }
+.valeurs-header .title-group .t-big { font-size: clamp(1.6rem, 2.5vw, 2.2rem); }
+.valeurs-header p { font-size: 0.9rem; color: #666; line-height: 1.75; margin-top: 14px; }
+
+.valeurs-cards {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 14px; margin-bottom: 48px;
+}
+
+.valeur-card {
+  background: #fff; border-radius: 14px; padding: 28px 16px 24px;
+  text-align: center; box-shadow: 0 2px 12px rgba(8,28,55,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.valeur-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(8,28,55,0.10); }
+
+.valeur-icon {
+  width: 50px; height: 50px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.valeur-icon svg { width: 22px; height: 22px; }
+.valeur-card h3 { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--blue); margin-bottom: 6px; }
+.valeur-card p { font-size: 0.78rem; color: #777; line-height: 1.6; }
+.valeurs-cta { text-align: center; }
+
+/* ══════════════════════════════
+   STATS — bleu marine
+══════════════════════════════ */
+.section-stats { background: var(--blue); padding: 80px 0 0; overflow: hidden; }
+.stats-top { text-align: center; margin-bottom: 56px; }
+.stats-eyebrow { font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 700; display: block; margin-bottom: 14px; }
+.stats-big { font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; color: var(--blue-2); line-height: 1; display: block; letter-spacing: -2px; }
+.stats-big-label { font-size: clamp(0.85rem, 1.4vw, 1rem); color: rgba(255,255,255,0.5); font-weight: 400; display: block; margin-top: 10px; }
+.stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid rgba(255,255,255,0.07); margin-top: 56px; }
+.stat-item { padding: 36px 18px; text-align: center; border-right: 1px solid rgba(255,255,255,0.06); transition: background 0.3s; }
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: rgba(255,255,255,0.03); }
+.stat-num { font-size: clamp(1.5rem, 2.5vw, 2.4rem); font-weight: 900; color: #fff; line-height: 1; display: block; margin-bottom: 8px; }
+.stat-label { font-size: 0.63rem; color: var(--blue-2); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; line-height: 1.5; }
+
+/* ══════════════════════════════
+   AVIS TRUSTPILOT — défilement
+══════════════════════════════ */
+.section-trustpilot { background: #fff; padding: 90px 0; overflow: hidden; }
+
+.tp-header { text-align: center; max-width: 580px; margin: 0 auto 50px; }
+.tp-header .title-group .t-big { font-size: clamp(1.6rem, 2.5vw, 2.2rem); }
+
+/* logo Trustpilot stylisé */
+.tp-logo {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 14px;
+}
+.tp-logo-stars { color: #00b67a; font-size: 1.1rem; letter-spacing: 2px; }
+.tp-logo-name { font-size: 0.78rem; font-weight: 700; color: #191919; letter-spacing: 0.5px; }
+.tp-score { font-size: 0.78rem; color: #666; margin-top: 6px; }
+.tp-score strong { color: var(--blue); font-weight: 800; }
+
+/* track défilant */
+.tp-track-wrap { overflow: hidden; margin: 0 -40px; padding: 8px 0 16px; }
+.tp-track {
+  display: flex; gap: 18px;
+  animation: scrollTp 32s linear infinite;
+  width: max-content;
+}
+.tp-track:hover { animation-play-state: paused; }
+@keyframes scrollTp {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.tp-card {
+  width: 300px; flex-shrink: 0;
+  background: #fff; border-radius: 12px;
+  padding: 22px 22px 20px;
+  box-shadow: 0 2px 16px rgba(8,28,55,0.07);
+  border: 1px solid var(--gray-2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.tp-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(8,28,55,0.11); }
+
+.tp-card-stars { color: #00b67a; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 10px; }
+
+.tp-card blockquote {
+  font-size: 0.85rem; font-style: italic; font-weight: 500;
+  color: var(--blue); line-height: 1.65; margin-bottom: 14px;
+}
+
+.tp-card-meta {
+  display: flex; align-items: center; gap: 10px;
+}
+.tp-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--blue-2); display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.tp-card-author { font-size: 0.68rem; font-weight: 700; color: var(--blue); }
+.tp-card-date { font-size: 0.62rem; color: #aaa; margin-top: 1px; }
+
+/* ══════════════════════════════
+   BANNIÈRE CTA
+══════════════════════════════ */
+.cta-banner { background: var(--blue); padding: 50px 40px; text-align: center; }
+.cta-banner-text { color: #fff; font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 600; margin-bottom: 24px; letter-spacing: 0.3px; }
+
+/* ══════════════════════════════
+   CTA FINAL — fond beige
+══════════════════════════════ */
+.section-cta { background: var(--gray-0); padding: 100px 0; }
+.cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.cta-text .title-group { margin-bottom: 18px; }
+.cta-text .title-group .t-big { font-size: clamp(1.7rem, 2.8vw, 2.4rem); }
+.cta-text p { font-size: 0.93rem; color: #555; line-height: 1.85; margin-bottom: 34px; }
+.cta-img img { width: 100%; height: 420px; object-fit: cover; border-radius: 14px; display: block; box-shadow: 0 12px 48px rgba(8,28,55,0.13); }
+.cta-img-note { margin-top: 14px; display: inline-block; background: var(--blue); color: #fff; border-radius: 6px; padding: 10px 18px; font-size: 0.74rem; font-weight: 600; border-left: 3px solid var(--blue-2); }
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+.footer-strip { background: var(--blue); padding: 22px 40px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-strip .logo { font-size: 0.95rem; font-weight: 900; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
+.footer-strip p { font-size: 0.68rem; color: rgba(255,255,255,0.28); letter-spacing: 1px; }
+
+/* wave helper */
+.wave { display: block; line-height: 0; overflow: hidden; }
+.wave svg { display: block; width: 100%; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 1024px) {
+  .valeurs-cards { grid-template-columns: repeat(3,1fr); }
+  .steps-cols { grid-template-columns: 1fr; gap: 36px; }
+  .step-arrow-wrap { display: none; }
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .cas-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(3,1fr); }
+  .cta-inner { grid-template-columns: 1fr; }
+  .valeurs-cards { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+  BLOC 1 — HERO
+══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Gauche : texte -->
+      <div class="hero-left">
+        <div class="hero-pill">
+          <div class="hero-pill-dot"></div>
+          <span>Inclus dans chaque réservation</span>
+        </div>
+
+        <h1>Notre<br>Conciergerie</h1>
+
+        <p class="hero-sub">Une équipe à chaque étape de votre voyage.</p>
+
+        <div class="hero-inclu">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p>Sans option, sans supplément.</p>
+        </div>
+
+        <a href="#contact" class="btn-primary">Parler à un conseiller</a>
+      </div>
+
+      <!-- Droite : équipe -->
+      <div class="hero-right">
+        <div class="hero-team-grid">
+
+          <!-- Manon — carte principale -->
+          <div class="team-card-main">
+            <div class="tc-photo">
+              <img src="Manon_photo_profil_bleu.jpg" alt="Manon">
+            </div>
+            <div class="tc-info">
+              <div class="tc-name">Manon</div>
+              <div class="tc-role">Responsable Conciergerie</div>
+              <p class="tc-quote">« Derrière chaque réservation, une personne responsable de votre voyage. »</p>
+            </div>
+          </div>
+
+          <!-- Rangée : India + autres -->
+          <div class="team-row-bottom">
+
+            <div class="team-card-sm">
+              <div class="tc-photo-sm">
+                <img src="Photo_India_.png" alt="India">
+              </div>
+              <div class="tc-info-sm">
+                <div class="tc-name-sm">India</div>
+                <div class="tc-role-sm">Agent Conciergerie</div>
+              </div>
+            </div>
+
+            <div class="team-card-rest">
+              <div class="team-rest-avatars">
+                <div class="team-rest-av">G</div>
+                <div class="team-rest-av">A</div>
+                <div class="team-rest-av">+</div>
+              </div>
+              <div>
+                <div class="team-rest-label">& toute l'équipe</div>
+                <div class="team-rest-sub">disponible pour vous, de A à Z</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:80px;">
+      <path d="M0,40 C360,80 1080,0 1440,50 L1440,80 L0,80 Z" fill="#f5f2ed"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+  BLOC 2 — PREUVES + CITATION
+══════════════════════════════════════ -->
+<section class="section-preuves">
+  <div class="container">
+
+    <div class="preuves-header">
+      <div class="title-group">
+        <span class="t-small">Ce que « être là » veut dire</span>
+        <h2 class="t-big">Concrètement.</h2>
+      </div>
+    </div>
+
+    <div class="cas-grid">
+
+      <div class="cas-card">
+        <div class="cas-head">
+          <div class="cas-meta">Conrad · Écosse · Août 2024</div>
+          <div class="cas-result">Faillite à J-10.<br>Départ maintenu.</div>
+        </div>
+        <div class="cas-divider"></div>
+        <div class="cas-body">
+          <p class="cas-detail">Nouveau bateau trouvé en urgence. Frais intégralement couverts. Le client est parti à la date prévue.</p>
+          <span class="cas-tag">Vacances sauvées</span>
+        </div>
+      </div>
+
+      <div class="cas-card">
+        <div class="cas-head">
+          <div class="cas-meta">Morin · Palma · Juin 2024</div>
+          <div class="cas-result">Bateau jamais livré.<br>Tous frais assumés.</div>
+        </div>
+        <div class="cas-divider"></div>
+        <div class="cas-body">
+          <p class="cas-detail">Loueur défaillant au dernier moment. Nouveau bateau trouvé, l'intégralité des frais prise en charge.</p>
+          <span class="cas-tag">Zéro reste à charge</span>
+        </div>
+      </div>
+
+      <div class="cas-card">
+        <div class="cas-head">
+          <div class="cas-meta">Gourdon · Palma · Août 2025</div>
+          <div class="cas-result">Bateau inutilisable.<br>12 personnes. Deux semaines.</div>
+        </div>
+        <div class="cas-divider"></div>
+        <div class="cas-body">
+          <p class="cas-detail">Check-in impossible. Solution trouvée le jour même. L'été suivant réservé avant même de rentrer.</p>
+          <span class="cas-tag">Confiance renouvelée</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- vague validée → citation -->
+  <div class="preuves-wave">
+    <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:90px;">
+      <path d="M0,0 L1440,0 L1440,45 C1080,90 360,10 0,60 Z" fill="#1e4976"/>
+    </svg>
+  </div>
+</section>
+
+<!-- Citation unique -->
+<section class="citation-bloc">
+  <div class="container">
+    <div class="citation-single">
+      <div class="cit-mark">"</div>
+      <p class="cit-text">Quand quelque chose ne va pas, vous n'avez pas à le gérer seul. C'est pour ça qu'on est là — de la première question jusqu'au retour à quai.</p>
+      <div class="cit-author">L'équipe Conciergerie Filovent</div>
+      <div class="cit-role">Depuis 1995</div>
+    </div>
+  </div>
+</section>
+
+<!-- wave citation → process (blanc) -->
+<div class="cit-wave wave">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:70px;background:#fff;">
+    <path d="M0,30 C360,70 1080,0 1440,40 L1440,70 L0,70 Z" fill="#fff"/>
+  </svg>
+</div>
+
+
+<!-- ══════════════════════════════════════
+  BLOC 3 — PROCESS — fond blanc
+══════════════════════════════════════ -->
+<section class="section-process">
+  <div class="container">
+
+    <div class="title-group" style="text-align:center; margin-bottom:70px;">
+      <span class="t-small">Notre méthode</span>
+      <h2 class="t-big">Comment on travaille.</h2>
+    </div>
+
+    <div class="steps-cols">
+
+      <!-- Étape 01 -->
+      <div class="step-col">
+        <!-- Illustration "à la main" : checklist / clipboard -->
+        <div class="step-illo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- clipboard body -->
+            <rect x="18" y="22" width="64" height="72" rx="6" stroke="#081C37" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+              style="stroke-dasharray:2 0; paint-order:stroke;"/>
+            <!-- clip -->
+            <rect x="36" y="14" width="28" height="14" rx="7" stroke="#081C37" stroke-width="3" fill="white"/>
+            <!-- lines -->
+            <line x1="30" y1="46" x2="70" y2="46" stroke="#04abef" stroke-width="3" stroke-linecap="round"/>
+            <line x1="30" y1="58" x2="60" y2="58" stroke="#dddad3" stroke-width="3" stroke-linecap="round"/>
+            <line x1="30" y1="70" x2="55" y2="70" stroke="#dddad3" stroke-width="3" stroke-linecap="round"/>
+            <!-- tick -->
+            <polyline points="30,35 36,42 48,28" stroke="#af141c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- heart décoratif -->
+            <path d="M75,18 c2-3 6-3 6,1 c0,3-6,7-6,7 s-6-4-6-7 c0-4 4-4 6-1z" fill="#04abef" opacity="0.35"/>
+          </svg>
+        </div>
+        <h3>Avant le départ<br>On prépare. Vous embarquez.</h3>
+        <p>Documents, formalités, check-list de bord. Votre conseiller répond avant même que vous ayez à chercher.</p>
+      </div>
+
+      <!-- Flèche dessinée -->
+      <div class="step-arrow-wrap">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8,24 C16,18 28,30 38,22" stroke="#dddad3" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <polyline points="33,17 38,22 33,27" stroke="#dddad3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Étape 02 -->
+      <div class="step-col">
+        <!-- Illustration : téléphone avec ondes -->
+        <div class="step-illo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- phone -->
+            <rect x="30" y="18" width="30" height="56" rx="6" stroke="#081C37" stroke-width="3.5"/>
+            <circle cx="45" cy="66" r="3" fill="#04abef"/>
+            <line x1="38" y1="25" x2="52" y2="25" stroke="#dddad3" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- ondes -->
+            <path d="M66,34 Q74,42 66,50" stroke="#04abef" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <path d="M72,28 Q84,42 72,56" stroke="#04abef" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.45"/>
+            <!-- étoile déco -->
+            <text x="18" y="30" font-size="10" fill="#af141c" opacity="0.5" font-family="Arial">✦</text>
+            <text x="20" y="60" font-size="7" fill="#04abef" opacity="0.4" font-family="Arial">✦</text>
+          </svg>
+        </div>
+        <h3>Pendant la navigation<br>Joignable. Toujours.</h3>
+        <p>Une question imprévue en mer ? Un changement d'escale ? Nous sommes là — une vraie personne, pas un formulaire.</p>
+      </div>
+
+      <!-- Flèche dessinée -->
+      <div class="step-arrow-wrap">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8,24 C16,18 28,30 38,22" stroke="#dddad3" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <polyline points="33,17 38,22 33,27" stroke="#dddad3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Étape 03 -->
+      <div class="step-col">
+        <!-- Illustration : bouclier avec ancre -->
+        <div class="step-illo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- shield -->
+            <path d="M50,14 L78,26 L78,50 C78,66 64,78 50,84 C36,78 22,66 22,50 L22,26 Z"
+              stroke="#081C37" stroke-width="3.5" stroke-linejoin="round"/>
+            <!-- fill léger -->
+            <path d="M50,14 L78,26 L78,50 C78,66 64,78 50,84 C36,78 22,66 22,50 L22,26 Z"
+              fill="#eaf4fb" opacity="0.6"/>
+            <!-- ancre stylisée -->
+            <circle cx="50" cy="40" r="5" stroke="#04abef" stroke-width="2.5"/>
+            <line x1="50" y1="45" x2="50" y2="64" stroke="#04abef" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M38,57 Q50,64 62,57" stroke="#04abef" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <line x1="50" y1="35" x2="50" y2="30" stroke="#04abef" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- tick rouge -->
+            <circle cx="70" cy="22" r="8" fill="#af141c" opacity="0.12"/>
+            <polyline points="65,22 69,26 76,18" stroke="#af141c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Si problème<br>On prend en main. On intervient.</h3>
+        <p>Bateau inutilisable, loueur défaillant, situation critique. On gère. On trouve. Vos vacances ne s'arrêtent pas là.</p>
+      </div>
+
+    </div>
+
+    <div class="process-cta">
+      <a href="#contact" class="btn-primary">Parler à un conseiller</a>
+    </div>
+  </div>
+</section>
+
+<!-- vague process → valeurs beige -->
+<div class="process-wave wave">
+  <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:70px;background:#f5f2ed;">
+    <path d="M0,20 C360,70 1080,0 1440,40 L1440,70 L0,70 Z" fill="#f5f2ed"/>
+  </svg>
+</div>
+
+
+<!-- ══════════════════════════════════════
+  VALEURS
+══════════════════════════════════════ -->
+<section class="section-valeurs">
+  <div class="container">
+    <div class="valeurs-header">
+      <div class="title-group">
+        <span class="t-small">Notre accompagnement</span>
+        <h2 class="t-big">Inclus, sans exception.</h2>
+      </div>
+      <p>Depuis 1995, notre conciergerie est le cœur de Filovent. Pas un service annexe — le fondement de chaque réservation.</p>
+    </div>
+
+    <div class="valeurs-cards">
+      <div class="valeur-card">
+        <div class="valeur-icon" style="background:#fff0f0;"><svg viewBox="0 0 24 24" fill="none" stroke="#af141c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Qualité</h3><p>38 000 voyageurs depuis 1995.</p>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-icon" style="background:#ddf0fa;"><svg viewBox="0 0 24 24" fill="none" stroke="#015aa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3>Proximité</h3><p>Un conseiller dédié. De A à Z.</p>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-icon" style="background:#e5f9f0;"><svg viewBox="0 0 24 24" fill="none" stroke="#00b8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Facilité</h3><p>Simple. Rapide. Réactif.</p>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-icon" style="background:#fff8e1;"><svg viewBox="0 0 24 24" fill="none" stroke="#af141c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <h3>Contact</h3><p>Une vraie relation humaine.</p>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-icon" style="background:#e8f4ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#081C37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Protection</h3><p>Votre intérêt d'abord. Toujours.</p>
+      </div>
+    </div>
+
+    <div class="valeurs-cta">
+      <a href="#contact" class="btn-secondary">En savoir plus</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section-stats">
+  <div class="container">
+    <div class="stats-top">
+      <span class="stats-eyebrow">Depuis 1995</span>
+      <span class="stats-big">38 000</span>
+      <span class="stats-big-label">voyageurs accompagnés — des particuliers, des familles, des passionnés.</span>
+    </div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-item"><span class="stat-num">1 000+</span><span class="stat-label">Services<br>Conciergerie</span></div>
+    <div class="stat-item"><span class="stat-num">38 000</span><span class="stat-label">Clients<br>accompagnés</span></div>
+    <div class="stat-item"><span class="stat-num">60</span><span class="stat-label">Collaborateurs<br>dédiés</span></div>
+    <div class="stat-item"><span class="stat-num">20 000</span><span class="stat-label">Bateaux<br>référencés</span></div>
+    <div class="stat-item"><span class="stat-num">4,6/5</span><span class="stat-label">Avis vérifiés<br>clients</span></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+  AVIS TRUSTPILOT — défilement
+══════════════════════════════════════ -->
+<section class="section-trustpilot">
+  <div class="container">
+    <div class="tp-header">
+      <div class="tp-logo">
+        <span class="tp-logo-stars">★★★★★</span>
+        <span class="tp-logo-name">Trustpilot</span>
+      </div>
+      <div class="title-group" style="margin-bottom:10px;">
+        <span class="t-small">Avis vérifiés</span>
+        <h2 class="t-big" style="font-size:clamp(1.6rem,2.5vw,2.2rem);">Ce qu'ils disent de nous.</h2>
+      </div>
+      <p class="tp-score"><strong>4,6 / 5</strong> — basé sur plus de 800 avis vérifiés</p>
+    </div>
+  </div>
+
+  <div class="tp-track-wrap">
+    <div class="tp-track">
+
+      <!-- 7 avis × 2 (clone boucle) -->
+      <div class="tp-card">
+        <div class="tp-card-stars">★★★★★</div>
+        <blockquote>Service impeccable, réactif et humain. Je ne réserverai plus jamais sans Filovent.</blockquote>
+        <div class="tp-card-meta">
+          <div class="tp-avatar">JM</div>
+          <div><div class="tp-card-author">Jacques M.</div><div class="tp-card-date">Novembre 2024</div></div>
+        </div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-card-stars">★★★★★</div>
+        <blockquote>Quand notre bateau est tombé en panne, ils ont tout géré en moins de 2h. Bluffant.</blockquote>
+        <div class="tp-card-meta">
+          <div class="tp-avatar" style="background:#015aa5;">SF</div>
+          <div><div class="tp-card-author">Sophie F.</div><div class="tp-card-date">Août 2024</div></div>
+        </div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-card-stars">★★★★★</div>
+        <blockquote>Un accompagnement vraiment différent. On sentait qu'il y avait quelqu'un derrière, pas juste un portail.</blockquote>
+        <div class="tp-card-meta">
+          <div class="tp-avatar" style="background:#af141c;">ML</div>
+          <div><div class="tp-card-author">Marc L.</div><div class="tp-card-date">Juillet 2024</div></div>
+        </div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-card-stars">★★★★★</div>
+        <blockquote>Filovent nous a sauvé les vacances. Le loueur a fait faillite — ils ont trouvé une solution en 48h.</blockquote>
+        <div class="tp-card-meta">
+          <div class="tp-avatar" style="background:#00b8f8;">AG</div>
+          <div><div class="tp-card-author">Alexia G.</div><div class="tp-card-date">Août 2025</div></div>
+        </div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-card-stars">★★★★★</div>
+        <blockquote>Première location voilier pour nous. L'équipe a anticipé toutes nos questions. Ça rassure vraiment.</blockquote>
+        <div class="tp-card-meta">
+          <div class="tp-avatar" style="background:#1793d7;">PD</div>
+          <div><div class="tp-card-author">Pierre D.</div><div class="tp-card-date">Juin 2024</div></div>
+        </div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-card-stars">★★★★★</div>
+        <blockquote>Toujours joignables, toujours efficaces. La conciergerie Filovent, c'est le vrai plus de cette agence.</blockquote>
+        <div class="tp-card-meta">
+          <div class="tp-avatar" style="background:#004ba4;">CR</div>
+          <div><div class="tp-card-author">Claire R.</div><div class="tp-card-date">Septembre 2024</div></div>
+        </div>
+      </div>
+      <div class="tp-card">
+        <div class="tp-card-stars">★★★★★</div>
+        <blockquote>On revient chaque été. Pas pour les prix — pour la sérénité que ça apporte de savoir qu'on est accompagnés.</blockquote>
+        <div class="tp-card-meta">
+          <div class="tp-avatar" style="background:#081C37;">FB</div>
+          <div><div class="tp-card-author">Famille B.</div><div class="tp-card-date">2023–2025</div></div>
+        </div>
+      </div>
+
+      <!-- clone -->
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Service impeccable, réactif et humain. Je ne réserverai plus jamais sans Filovent.</blockquote><div class="tp-card-meta"><div class="tp-avatar">JM</div><div><div class="tp-card-author">Jacques M.</div><div class="tp-card-date">Novembre 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Quand notre bateau est tombé en panne, ils ont tout géré en moins de 2h. Bluffant.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#015aa5;">SF</div><div><div class="tp-card-author">Sophie F.</div><div class="tp-card-date">Août 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Un accompagnement vraiment différent. On sentait qu'il y avait quelqu'un derrière, pas juste un portail.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#af141c;">ML</div><div><div class="tp-card-author">Marc L.</div><div class="tp-card-date">Juillet 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Filovent nous a sauvé les vacances. Le loueur a fait faillite — ils ont trouvé une solution en 48h.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#00b8f8;">AG</div><div><div class="tp-card-author">Alexia G.</div><div class="tp-card-date">Août 2025</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Première location voilier pour nous. L'équipe a anticipé toutes nos questions. Ça rassure vraiment.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#1793d7;">PD</div><div><div class="tp-card-author">Pierre D.</div><div class="tp-card-date">Juin 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Toujours joignables, toujours efficaces. La conciergerie Filovent, c'est le vrai plus de cette agence.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#004ba4;">CR</div><div><div class="tp-card-author">Claire R.</div><div class="tp-card-date">Septembre 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>On revient chaque été. Pas pour les prix — pour la sérénité que ça apporte de savoir qu'on est accompagnés.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#081C37;">FB</div><div><div class="tp-card-author">Famille B.</div><div class="tp-card-date">2023–2025</div></div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Bannière CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <p class="cta-banner-text">Une question ? Notre équipe répond sous 24h.</p>
+    <a href="#contact" class="btn-white">Parler à un conseiller</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  BLOC 4 — CTA FINAL
+══════════════════════════════════════ -->
+<section class="section-cta" id="contact">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <div class="title-group" style="margin-bottom:18px;">
+          <span class="t-small">Votre projet</span>
+          <h2 class="t-big" style="font-size:clamp(1.7rem,2.8vw,2.4rem);">Votre projet mérite<br>une vraie conversation.</h2>
+        </div>
+        <p>Notre équipe est disponible pour répondre à chaque question — avant, pendant, et après votre voyage. Pas d'attente, pas de formulaire perdu.</p>
+        <a href="#" class="btn-primary" style="margin-top:34px;">Parler à notre équipe</a>
+      </div>
+      <div class="cta-img">
+        <img src="https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=900&q=80" alt="Voilier">
+        <div class="cta-img-note">✦ Réponse sous 24h garantie</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer-strip">
+  <span class="logo">Filovent</span>
+  <p>© 2025 Filovent · Tous droits réservés</p>
+</div>
+
+</body>
+</html>
