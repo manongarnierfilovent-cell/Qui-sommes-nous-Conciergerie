@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre service conciergerie — Filovent</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#081C37; --red:#af141c;
+  --blue-1:#015aa5; --blue-2:#04abef;
+  --sand:#faf8f5; --gray-0:#f5f2ed; --gray-2:#e8e6df; --gray-3:#f6f5f3;
+  --navy:#0d2044; --b-red:#be1428; --gray:#6b7a8d; --lgray:#9aa5b1;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Montserrat',Inter,Arial,sans-serif;color:var(--blue);background:#fff;overflow-x:hidden;}
+.container{max-width:1160px;margin:0 auto;padding:0 40px;}
+
+/* ── UTILS ── */
+.fil-label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--blue);display:block;text-align:center;margin-bottom:12px;}
+.fil-h2{font-size:clamp(1.4rem,2.2vw,2rem);font-weight:800;color:var(--blue);line-height:1.2;text-align:center;letter-spacing:-.2px;}
+.btn-red{display:inline-flex;align-items:center;gap:8px;background:#af141c;color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.5px;padding:14px 30px;border:2px solid #af141c;border-radius:100px;text-decoration:none;transition:background .3s,color .3s;}
+.btn-red:hover{background:transparent;color:#af141c;}
+
+/* ── FADE-IN SCROLL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── VAGUE SVG ── */
+.wave-divider{display:block;width:100%;overflow:hidden;line-height:0;}
+.wave-divider svg{display:block;width:100%;}
+
+/* ── HEADER ── */
+.site-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid rgba(8,28,55,.07);height:64px;display:flex;align-items:center;}
+.header-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1160px;margin:0 auto;padding:0 40px;}
+.header-nav{display:flex;align-items:center;gap:28px;}
+.hamburger{display:flex;flex-direction:column;gap:4px;cursor:pointer;}
+.hamburger span{display:block;width:20px;height:2px;background:var(--blue);border-radius:2px;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--blue);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--blue-2);}
+.header-logo{position:absolute;left:50%;transform:translateX(-50%);}
+.header-logo img{height:28px;display:block;}
+.header-logo-txt{font-size:1.5rem;font-weight:900;font-style:italic;color:var(--blue);text-decoration:none;}
+.header-cta{display:flex;align-items:center;gap:7px;font-size:.76rem;font-weight:600;color:var(--blue);text-decoration:none;border:1px solid var(--blue-2);border-radius:100px;padding:6px 14px;transition:background .2s;}
+.header-cta:hover{background:var(--blue-2);color:#fff;}
+.header-cta svg{color:var(--blue-2);}
+.header-bar{height:8px;background:var(--blue);}
+
+/* ── HERO ── */
+.hero{display:flex;min-height:540px;overflow:hidden;background:linear-gradient(to right,#ffffff 0%,#ffffff 37%,rgba(203,224,242,0.13) 46%,rgba(187,216,239,0.40) 64%,rgba(176,209,236,0.55) 100%);}
+.hero-left{flex:0 0 45%;padding:64px 60px 64px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
+.service-title{font-size:60px;line-height:1.02;color:var(--navy);}
+.service-title .t-light{font-weight:300;display:block;}
+.service-title .t-bold{font-weight:900;display:block;}
+.subtitle-gray{font-size:15px;color:var(--lgray);line-height:1.5;margin-top:18px;}
+.vb-list{margin:20px 0 30px;display:flex;flex-direction:column;gap:9px;}
+.vb-item{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--gray);}
+.vb-dash{width:18px;height:1.5px;background:rgba(13,32,68,0.2);flex-shrink:0;}
+.cta-btn{display:inline-flex;align-items:center;align-self:flex-start;background:var(--b-red);color:#fff;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:600;border:none;border-radius:100px;padding:14px 32px;cursor:pointer;text-decoration:none;transition:opacity .2s;}
+.cta-btn:hover{opacity:.88;}
+.hero-right{flex:0 0 55%;padding:36px 24px;position:relative;z-index:2;display:flex;align-items:center;}
+.team-stage{width:100%;display:grid;grid-template-columns:158px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;}
+.india-col{grid-column:1;grid-row:1/3;align-self:start;padding-top:114px;}
+.manon-col{grid-column:2;grid-row:1;min-width:0;display:flex;flex-direction:column;}
+.photo-wrap{position:relative;border-radius:50%;overflow:hidden;border:3.5px solid rgba(255,255,255,0.94);box-shadow:0 6px 28px rgba(13,32,68,0.13);cursor:pointer;flex-shrink:0;transition:transform .3s,box-shadow .3s;}
+.photo-wrap:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(13,32,68,0.22);}
+.manon-circle{width:182px;height:182px;}
+.india-circle{width:152px;height:152px;}
+.photo-placeholder{display:flex;align-items:center;justify-content:center;background:#b4cedf;border-radius:50%;width:100%;height:100%;}
+.photo-placeholder svg{opacity:0.48;}
+.photo-overlay{position:absolute;inset:0;border-radius:50%;background:rgba(13,32,68,0.85);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;transform:scale(0.94);transition:opacity .28s ease,transform .28s ease;pointer-events:none;}
+.photo-wrap:hover .photo-overlay{opacity:1;transform:scale(1);}
+.overlay-quote{font-size:11.5px;font-style:italic;color:#fff;text-align:center;line-height:1.65;}
+.overlay-quote::before{content:'\00AB\00A0';}
+.overlay-quote::after{content:'\00A0\00BB';}
+.person-info{margin-top:10px;}
+.person-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px;}
+.person-role{font-size:9.5px;font-weight:700;color:var(--b-red);letter-spacing:1.8px;text-transform:uppercase;}
+.equipe-element{grid-column:2;grid-row:2;min-width:0;margin-top:18px;border-left:2.5px solid rgba(13,32,68,0.20);padding-left:16px;}
+.equipe-title{font-size:14px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:5px;}
+.equipe-sub{font-size:11.5px;color:var(--lgray);line-height:1.55;}
+
+/* ── BLOC 2 SERVICES ── */
+.section-services{background:var(--sand);padding:64px 0 72px;}
+.services-intro{text-align:center;max-width:560px;margin:0 auto 48px;}
+.services-intro p{font-size:.88rem;color:#666;line-height:1.75;margin-top:12px;}
+.services-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:48px;}
+.tab-btn{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#999;background:transparent;border:1.5px solid var(--gray-2);border-radius:100px;padding:9px 28px;cursor:pointer;transition:all .25s;}
+.tab-btn.active{color:#fff;background:var(--blue);border-color:var(--blue);}
+.tab-btn:hover:not(.active){color:var(--blue);border-color:var(--blue);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.services-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.services-phase-col{padding:0 32px;}
+.services-phase-col:first-child{padding-left:0;}
+.services-phase-col:last-child{padding-right:0;}
+.services-phase-col+.services-phase-col{border-left:1px solid var(--gray-2);}
+.services-phase-title{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--blue);padding-bottom:14px;margin-bottom:8px;}
+.svc-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(8,28,55,.05);transition:transform .22s;}
+.svc-row:last-child{border-bottom:none;}
+.svc-row:hover{transform:translateX(4px);}
+.svc-ico{width:28px;height:28px;flex-shrink:0;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.svc-ico svg{width:14px;height:14px;stroke:var(--blue);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s;}
+.svc-row:hover .svc-ico svg{stroke:var(--blue-2);}
+.svc-name{font-size:.8rem;font-weight:700;color:var(--blue);line-height:1.25;}
+.svc-desc{font-size:.68rem;color:#aaa;margin-top:1px;line-height:1.35;}
+
+/* ── BLOC CITATION ── */
+
+/* ── TRANSITION ornementale ── */
+.transition-2-3{position:relative;height:64px;background:var(--sand);display:flex;align-items:center;justify-content:center;}
+.transition-2-3-inner{display:flex;align-items:center;gap:16px;}
+.transition-2-3-line{width:48px;height:1px;background:rgba(13,32,68,.15);}
+.transition-2-3-diamond{width:6px;height:6px;background:var(--b-red);transform:rotate(45deg);flex-shrink:0;}
+
+/* ── BLOC 3 PREUVES ── */
+.b3-header{background:#fff;text-align:center;padding:64px 40px 48px;}
+.b3-surtitre{font-size:.65rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--b-red);display:block;margin-bottom:20px;}
+.b3-titre{font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:800;color:var(--blue);line-height:1.15;margin-bottom:16px;max-width:640px;margin-left:auto;margin-right:auto;}
+.b3-sous-titre{font-size:.88rem;color:var(--lgray);font-style:italic;line-height:1.6;}
+.va-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(13,32,68,.08);}
+.va-card{position:relative;overflow:hidden;min-height:380px;padding:52px 48px 80px;border-right:1px solid rgba(13,32,68,.08);cursor:pointer;background:#fff;transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s;}
+.va-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(13,32,68,.12);}
+.va-card:last-child{border-right:none;}
+.va-scanline{position:absolute;left:0;right:0;top:0;height:2px;background:var(--b-red);transform:translateY(-2px);transition:transform .42s cubic-bezier(.76,0,.24,1);z-index:4;}
+.va-card:hover .va-scanline,.va-card.open .va-scanline{transform:translateY(380px);}
+.va-card::before{content:'';position:absolute;inset:0;background:#f8f7f5;opacity:0;transition:opacity .36s ease;z-index:0;}
+.va-card:hover::before,.va-card.open::before{opacity:1;}
+.va-bignumber{position:absolute;right:32px;top:24px;font-size:96px;font-weight:900;color:var(--blue);opacity:.04;line-height:1;transition:opacity .3s;z-index:1;user-select:none;}
+.va-card:hover .va-bignumber,.va-card.open .va-bignumber{opacity:0;}
+.va-prob{position:relative;z-index:2;transition:opacity .28s ease .1s,transform .3s ease .1s;}
+.va-card:hover .va-prob,.va-card.open .va-prob{opacity:0;transform:translateY(-8px);}
+.va-num{font-size:.6rem;font-weight:700;letter-spacing:3px;color:var(--b-red);text-transform:uppercase;display:block;margin-bottom:6px;}
+.va-client{font-size:.7rem;color:var(--lgray);display:block;margin-bottom:24px;}
+.va-prob-label{font-size:.58rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--lgray);display:block;margin-bottom:12px;}
+.va-prob-text{font-size:.82rem;line-height:1.75;color:var(--gray);}
+.va-hint{position:absolute;bottom:32px;left:48px;z-index:3;display:flex;align-items:center;gap:10px;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--lgray);transition:opacity .2s;}
+.va-hint-dot{width:8px;height:8px;border-radius:50%;background:var(--b-red);animation:dot-pulse 2s ease-in-out infinite;}
+@keyframes dot-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+.va-card:hover .va-hint,.va-card.open .va-hint{opacity:0;}
+.va-res{position:absolute;inset:0;z-index:2;padding:52px 48px;opacity:0;transform:translateY(10px);transition:opacity .32s ease .22s,transform .32s ease .22s;pointer-events:none;}
+.va-card:hover .va-res,.va-card.open .va-res{opacity:1;transform:translateY(0);pointer-events:auto;}
+.va-res-num{font-size:.6rem;font-weight:700;letter-spacing:3px;color:var(--b-red);text-transform:uppercase;display:block;margin-bottom:6px;}
+.va-res-client{font-size:.7rem;color:var(--lgray);display:block;margin-bottom:24px;}
+.va-res-label{font-size:.58rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:16px;}
+.va-res-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.va-res-item{font-size:.82rem;line-height:1.5;color:var(--gray);display:flex;align-items:baseline;gap:10px;}
+.va-res-item.confirm{color:var(--blue);font-weight:700;margin-top:6px;}
+.va-res-item-dash{width:14px;height:1px;background:rgba(13,32,68,.2);flex-shrink:0;margin-top:8px;}
+
+/* ── BLOC 4 CHIFFRE ── */
+.bloc-chiffre{background:#f9f8f6;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;text-align:center;}
+.chiffre-surtitre{font-size:.58rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--lgray);display:block;margin-bottom:24px;}
+.chiffre-nombre{font-size:clamp(72px,9vw,120px);font-weight:900;color:var(--blue);line-height:1;letter-spacing:-3px;white-space:nowrap;font-variant-numeric:tabular-nums;display:block;margin-bottom:0;}
+.chiffre-accent{width:40px;height:3px;background:#C0392B;margin:20px auto;}
+.chiffre-texte{font-size:.92rem;font-weight:400;color:var(--gray);line-height:1.65;max-width:420px;margin:0 auto;}
+
+/* ── BLOC 5 TRUSTPILOT ── */
+.section-trustpilot{padding:72px 0 80px;background:#fff;overflow:hidden;}
+.tp-header{text-align:center;margin-bottom:48px;}
+.tp-logo{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;}
+.tp-logo-stars{color:#00b67a;font-size:1.2rem;letter-spacing:2px;}
+.tp-logo-name{font-size:1rem;font-weight:800;color:#191919;}
+.tp-score{font-size:.85rem;color:#666;}
+.tp-track-wrap{overflow:hidden;position:relative;}
+.tp-track-wrap::before,.tp-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.tp-track-wrap::before{left:0;background:linear-gradient(to right,#fff,transparent);}
+.tp-track-wrap::after{right:0;background:linear-gradient(to left,#fff,transparent);}
+.tp-track{display:flex;gap:20px;animation:tp-scroll 40s linear infinite;}
+.tp-track:hover{animation-play-state:paused;}
+@keyframes tp-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.tp-card{flex-shrink:0;width:280px;background:#f9f9f9;border:1px solid #e8e8e8;border-radius:10px;padding:22px 20px;transition:transform .3s,box-shadow .3s;}
+.tp-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(13,32,68,.1);}
+.tp-card-stars{color:#00b67a;font-size:.9rem;letter-spacing:1px;margin-bottom:10px;}
+.tp-card blockquote{font-size:.8rem;line-height:1.65;color:#444;font-style:italic;}
+.tp-card-meta{display:flex;align-items:center;gap:10px;margin-top:14px;}
+.tp-avatar{width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;flex-shrink:0;}
+.tp-card-author{font-size:.72rem;font-weight:700;color:var(--blue);}
+.tp-card-date{font-size:.62rem;color:#aaa;margin-top:1px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <nav class="header-nav">
+      <div class="hamburger"><span></span><span></span><span></span></div>
+      <ul class="nav-links">
+        <li><a href="https://www.filovent.com/location-bateau-destination/location-voilier">Destinations ↓</a></li>
+        <li><a href="https://www.filovent.com/landing/tous-nos-bateaux">Location bateau ↓</a></li>
+        <li><a href="https://www.filovent.com/croisiere">Croisière ↓</a></li>
+      </ul>
+    </nav>
+    <a href="https://www.filovent.com" class="header-logo">
+      <img src="https://www.filovent.com/storage/public/888/logoslogo-6931809695945.webp" alt="Filovent"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <span class="header-logo-txt" style="display:none;">Filovent</span>
+    </a>
+    <a href="tel:+33170809752" class="header-cta">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.4 1.14 2 2 0 012 .18h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +33 1 70 80 97 52
+    </a>
+  </div>
+</header>
+<div class="header-bar"></div>
+
+<!-- BLOC 1 — HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <h1 class="service-title reveal">
+      <span class="t-light">Notre service</span>
+      <span class="t-bold">conciergerie</span>
+    </h1>
+    <p class="subtitle-gray reveal">Une équipe à chaque étape de votre voyage.</p>
+    <div class="vb-list reveal">
+      <div class="vb-item"><span class="vb-dash"></span>Inclus dans chaque réservation</div>
+      <div class="vb-item"><span class="vb-dash"></span>Sans option, sans supplément</div>
+    </div>
+    <a href="https://www.filovent.com/front/contacts" class="cta-btn reveal">Parler à un conseiller</a>
+  </div>
+  <div class="hero-right">
+    <div class="team-stage">
+      <div class="india-col reveal">
+        <div class="photo-wrap india-circle">
+          <div class="photo-placeholder">
+            <svg width="152" height="152" viewBox="0 0 152 152" fill="none">
+              <circle cx="76" cy="54" r="27" fill="white"/>
+              <ellipse cx="76" cy="123" rx="44" ry="32" fill="white"/>
+            </svg>
+          </div>
+          <div class="photo-overlay"><p class="overlay-quote">Chaque client mérite une attention vraiment personnalisée.</p></div>
+        </div>
+        <div class="person-info">
+          <div class="person-name">India</div>
+          <div class="person-role">Agent Conciergerie</div>
+        </div>
+      </div>
+      <div class="manon-col reveal">
+        <div class="photo-wrap manon-circle">
+          <div class="photo-placeholder">
+            <svg width="182" height="182" viewBox="0 0 182 182" fill="none">
+              <circle cx="91" cy="64" r="32" fill="white"/>
+              <ellipse cx="91" cy="147" rx="53" ry="38" fill="white"/>
+            </svg>
+          </div>
+          <div class="photo-overlay"><p class="overlay-quote">Derrière chaque réservation, une personne responsable de votre voyage.</p></div>
+        </div>
+        <div class="person-info">
+          <div class="person-name">Manon</div>
+          <div class="person-role">Responsable Conciergerie</div>
+        </div>
+      </div>
+      <div class="equipe-element reveal">
+        <div class="equipe-title">Entourée de son équipe</div>
+        <div class="equipe-sub">à vos côtés,<br>avant, pendant et après</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VAGUE hero → services -->
+<div class="wave-divider" style="background:#fff;margin-bottom:-2px;">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" height="40" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,56 1080,56 1440,0 L1440,56 L0,56 Z" fill="#faf8f5"/>
+  </svg>
+</div>
+
+<!-- BLOC 2 — SERVICES -->
+<section class="section-services">
+  <div class="container">
+    <div class="services-intro reveal">
+      <span class="fil-label">Nos services</span>
+      <h2 class="fil-h2">Votre voyage, organisé de A à Z.</h2>
+      <p>Avant l'embarquement, pendant la navigation, en cas d'imprévu — votre conseiller Filovent s'occupe de tout.</p>
+    </div>
+    <div class="services-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('bareboat')">Location de bateau</button>
+      <button class="tab-btn" onclick="switchTab('croisiere')">Croisière à la cabine</button>
+    </div>
+
+    <div id="tab-bareboat" class="tab-content active">
+      <div class="services-phases">
+        <div class="services-phase-col reveal" style="--d:0ms">
+          <div class="services-phase-title">Avant le départ</div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><div class="svc-name">Organisation des transferts</div><div class="svc-desc">Aéroport → base → bateau</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><div><div class="svc-name">Avitaillement livré à bord</div><div class="svc-desc">Livraison à bord avant l'embarquement</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div><div class="svc-name">Assistance administrative</div><div class="svc-desc">On vous guide sur les documents requis selon votre destination</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 11.95-13.94"/><path d="M17.5 5C19.99 5 22 7.01 22 9.5S19.99 14 17.5 14h-1.8"/><line x1="12" y1="9" x2="12" y2="14"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg></div><div><div class="svc-name">Conseils itinéraire</div><div class="svc-desc">Recommandations personnalisées selon votre bateau et votre niveau</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="svc-name">Skipper professionnel</div><div class="svc-desc">Mise en relation avec un skipper certifié, si besoin</div></div></div>
+        </div>
+        <div class="services-phase-col reveal" style="--d:100ms">
+          <div class="services-phase-title">Pendant la navigation</div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.4 1.14 2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="svc-name">Ligne directe dédiée</div><div class="svc-desc">Pas de hotline — une vraie personne</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div><div class="svc-name">Hôtesse à bord</div><div class="svc-desc">Repas, intendance, confort de l'équipage</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div><div class="svc-name">Sélection d'activités</div><div class="svc-desc">Conseil et réservation des meilleures activités selon vos escales</div></div></div>
+        </div>
+        <div class="services-phase-col reveal" style="--d:200ms">
+          <div class="services-phase-title">Protection &amp; avaries</div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="svc-name">Bateau de remplacement</div><div class="svc-desc">On met tout en œuvre pour trouver une alternative si votre loueur est défaillant</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><div class="svc-name">Intervention en cas de litige</div><div class="svc-desc">Négociation directe avec le loueur pour vous</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><div><div class="svc-name">Assistance en cas d'avarie</div><div class="svc-desc">On vous accompagne et coordonne avec les prestataires locaux</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div><div class="svc-name">Un réseau mondial</div><div class="svc-desc">Loueurs partenaires sélectionnés dans 80+ pays et 400+ destinations</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-croisiere" class="tab-content">
+      <div class="services-phases">
+        <div class="services-phase-col reveal" style="--d:0ms">
+          <div class="services-phase-title">Avant le départ</div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="svc-name">Documents &amp; formalités</div><div class="svc-desc">Passeport, assurance rapatriement</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 11.95-13.94"/><path d="M17.5 5C19.99 5 22 7.01 22 9.5S19.99 14 17.5 14h-1.8"/><line x1="12" y1="9" x2="12" y2="14"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg></div><div><div class="svc-name">Conseils destination &amp; météo</div><div class="svc-desc">Destination, météo, saison — conseils sur mesure</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="svc-name">Présentation du programme</div><div class="svc-desc">Programme, escales, activités incluses</div></div></div>
+        </div>
+        <div class="services-phase-col reveal" style="--d:100ms">
+          <div class="services-phase-title">À bord &amp; en escale</div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.4 1.14 2 2 0 012 .18h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="svc-name">Votre interlocuteur dédié</div><div class="svc-desc">Votre conseiller, joignable tout au long</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><div><div class="svc-name">Préparation de chaque escale</div><div class="svc-desc">Restaurants, transferts, visites en avance</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div><div class="svc-name">Activités &amp; découvertes</div><div class="svc-desc">Plongée, randonnée, visites culturelles</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="svc-name">Conseils personnalisés</div><div class="svc-desc">Bonnes adresses et tips locaux</div></div></div>
+        </div>
+        <div class="services-phase-col reveal" style="--d:200ms">
+          <div class="services-phase-title">Protection &amp; accompagnement</div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="svc-name">Assistance en cas de problème</div><div class="svc-desc">Incident, problème de cabine — on gère</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><div class="svc-name">Réclamation &amp; remboursement</div><div class="svc-desc">Litige si la prestation n'est pas conforme</div></div></div>
+          <div class="svc-row"><div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div><div class="svc-name">Croisières dans 30+ pays</div><div class="svc-desc">Seychelles, Antilles, Grèce, Polynésie…</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- BLOC 3 — LES PREUVES -->
+<div class="b3-header">
+  <span class="b3-surtitre reveal">Les preuves</span>
+  <h2 class="b3-titre reveal">La différence se voit dans les détails.</h2>
+  <p class="b3-sous-titre reveal">Imprévus réels. Réponses concrètes.</p>
+</div>
+
+<div class="va-grid">
+  <div class="va-card reveal" style="--d:0ms">
+    <div class="va-scanline"></div>
+    <div class="va-bignumber">01</div>
+    <div class="va-prob">
+      <span class="va-num">01</span>
+      <span class="va-client">Conrad · Écosse · Août 2024</span>
+      <span class="va-prob-label">Le problème</span>
+      <p class="va-prob-text">L'armateur partenaire se déclare en faillite 72 heures avant l'embarquement. Le bateau est immobilisé, le voyage compromis.</p>
+    </div>
+    <div class="va-hint"><div class="va-hint-dot"></div>Voir la résolution</div>
+    <div class="va-res">
+      <span class="va-res-num">01</span>
+      <span class="va-res-client">Conrad · Écosse · Août 2024</span>
+      <span class="va-res-label">La résolution</span>
+      <ul class="va-res-list">
+        <li class="va-res-item"><span class="va-res-item-dash"></span>Nouveau bateau trouvé</li>
+        <li class="va-res-item"><span class="va-res-item-dash"></span>Totalité des frais couverts</li>
+        <li class="va-res-item"><span class="va-res-item-dash"></span>0 obligation légale, choix délibéré</li>
+        <li class="va-res-item confirm">✓ Départ maintenu</li>
+      </ul>
+    </div>
+  </div>
+  <div class="va-card reveal" style="--d:100ms">
+    <div class="va-scanline"></div>
+    <div class="va-bignumber">02</div>
+    <div class="va-prob">
+      <span class="va-num">02</span>
+      <span class="va-client">Morin · Palma · Juin 2024</span>
+      <span class="va-prob-label">Le problème</span>
+      <p class="va-prob-text">Le bateau n'a jamais été livré. Le partenaire a disparu sans restituer un centime.</p>
+    </div>
+    <div class="va-hint"><div class="va-hint-dot"></div>Voir la résolution</div>
+    <div class="va-res">
+      <span class="va-res-num">02</span>
+      <span class="va-res-client">Morin · Palma · Juin 2024</span>
+      <span class="va-res-label">La résolution</span>
+      <ul class="va-res-list">
+        <li class="va-res-item"><span class="va-res-item-dash"></span>Le client n'a rien déboursé de plus</li>
+        <li class="va-res-item confirm">✓ 4 665 € remboursés</li>
+      </ul>
+    </div>
+  </div>
+  <div class="va-card reveal" style="--d:200ms">
+    <div class="va-scanline"></div>
+    <div class="va-bignumber">03</div>
+    <div class="va-prob">
+      <span class="va-num">03</span>
+      <span class="va-client">Gourdon · Palma · Août 2025</span>
+      <span class="va-prob-label">Le problème</span>
+      <p class="va-prob-text">À l'arrivée, le bateau est inutilisable. Le partenaire refuse de l'admettre.</p>
+    </div>
+    <div class="va-hint"><div class="va-hint-dot"></div>Voir la résolution</div>
+    <div class="va-res">
+      <span class="va-res-num">03</span>
+      <span class="va-res-client">Gourdon · Palma · Août 2025</span>
+      <span class="va-res-label">La résolution</span>
+      <ul class="va-res-list">
+        <li class="va-res-item"><span class="va-res-item-dash"></span>Aucune perte pour le client</li>
+        <li class="va-res-item"><span class="va-res-item-dash"></span>Zéro perte financière</li>
+        <li class="va-res-item confirm">✓ Deux semaines sauvées</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- VAGUE preuves → chiffre -->
+<div class="wave-divider" style="background:#fff;margin-bottom:-2px;">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" height="40" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,56 C480,0 960,0 1440,56 L1440,56 L0,56 Z" fill="#faf8f5"/>
+  </svg>
+</div>
+
+<!-- BLOC 4 — CHIFFRE CLÉ -->
+<div class="bloc-chiffre">
+  <span class="chiffre-surtitre reveal">Depuis 1995</span>
+  <span class="chiffre-nombre reveal" id="chiffre-count">38&nbsp;000</span>
+  <div class="chiffre-accent reveal"></div>
+  <p class="chiffre-texte reveal">voyageurs accompagnés — des particuliers, des familles, des passionnés.</p>
+</div>
+
+<!-- VAGUE chiffre → trustpilot -->
+<div class="wave-divider" style="background:var(--sand);margin-bottom:-2px;">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none" height="40" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,56 1080,56 1440,0 L1440,56 L0,56 Z" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- BLOC 5 — TRUSTPILOT -->
+<section class="section-trustpilot">
+  <div class="container">
+    <div class="tp-header reveal">
+      <div class="tp-logo"><span class="tp-logo-stars">★★★★★</span><span class="tp-logo-name">Trustpilot</span></div>
+      <span class="fil-label" style="margin-bottom:8px;">Avis vérifiés</span>
+      <h2 class="fil-h2" style="font-size:clamp(1.3rem,2vw,1.75rem);">Ce qu'ils disent de nous.</h2>
+      <p class="tp-score" style="margin-top:8px;"><strong>4,6 / 5</strong> — basé sur plus de 800 avis vérifiés</p>
+    </div>
+  </div>
+  <div class="tp-track-wrap">
+    <div class="tp-track">
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Service impeccable, réactif et humain. Je ne réserverai plus jamais sans Filovent.</blockquote><div class="tp-card-meta"><div class="tp-avatar">JM</div><div><div class="tp-card-author">Jacques M.</div><div class="tp-card-date">Novembre 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Quand notre bateau est tombé en panne, ils ont tout géré en moins de 2h. Bluffant.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#015aa5;">SF</div><div><div class="tp-card-author">Sophie F.</div><div class="tp-card-date">Août 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Un accompagnement vraiment différent. On sentait qu'il y avait quelqu'un derrière, pas juste un portail.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#af141c;">ML</div><div><div class="tp-card-author">Marc L.</div><div class="tp-card-date">Juillet 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Filovent nous a sauvé les vacances. Le loueur a fait faillite — solution trouvée en 48h.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#00b8f8;">AG</div><div><div class="tp-card-author">Alexia G.</div><div class="tp-card-date">Août 2025</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Première location voilier. L'équipe a anticipé toutes nos questions. Ça rassure vraiment.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#1793d7;">PD</div><div><div class="tp-card-author">Pierre D.</div><div class="tp-card-date">Juin 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Toujours joignables, toujours efficaces. La conciergerie Filovent, c'est le vrai plus.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#004ba4;">CR</div><div><div class="tp-card-author">Claire R.</div><div class="tp-card-date">Septembre 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>On revient chaque été pour la sérénité que ça apporte de savoir qu'on est accompagnés.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#081C37;">FB</div><div><div class="tp-card-author">Famille B.</div><div class="tp-card-date">2023–2025</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Service impeccable, réactif et humain. Je ne réserverai plus jamais sans Filovent.</blockquote><div class="tp-card-meta"><div class="tp-avatar">JM</div><div><div class="tp-card-author">Jacques M.</div><div class="tp-card-date">Novembre 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Quand notre bateau est tombé en panne, ils ont tout géré en moins de 2h. Bluffant.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#015aa5;">SF</div><div><div class="tp-card-author">Sophie F.</div><div class="tp-card-date">Août 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Un accompagnement vraiment différent. On sentait qu'il y avait quelqu'un derrière, pas juste un portail.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#af141c;">ML</div><div><div class="tp-card-author">Marc L.</div><div class="tp-card-date">Juillet 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Filovent nous a sauvé les vacances. Le loueur a fait faillite — solution trouvée en 48h.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#00b8f8;">AG</div><div><div class="tp-card-author">Alexia G.</div><div class="tp-card-date">Août 2025</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Première location voilier. L'équipe a anticipé toutes nos questions. Ça rassure vraiment.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#1793d7;">PD</div><div><div class="tp-card-author">Pierre D.</div><div class="tp-card-date">Juin 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>Toujours joignables, toujours efficaces. La conciergerie Filovent, c'est le vrai plus.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#004ba4;">CR</div><div><div class="tp-card-author">Claire R.</div><div class="tp-card-date">Septembre 2024</div></div></div></div>
+      <div class="tp-card"><div class="tp-card-stars">★★★★★</div><blockquote>On revient chaque été pour la sérénité que ça apporte de savoir qu'on est accompagnés.</blockquote><div class="tp-card-meta"><div class="tp-avatar" style="background:#081C37;">FB</div><div><div class="tp-card-author">Famille B.</div><div class="tp-card-date">2023–2025</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ── TABS ── */
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* ── CARTES PREUVES ── */
+document.querySelectorAll('.va-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    var isOpen = card.classList.contains('open');
+    document.querySelectorAll('.va-card').forEach(function(c){ c.classList.remove('open'); });
+    if (!isOpen) card.classList.add('open');
+  });
+});
+
+/* ── REVEAL AU SCROLL avec stagger ── */
+var revealObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var delay = e.target.style.getPropertyValue('--d') || '0ms';
+      setTimeout(function(){
+        e.target.classList.add('visible');
+      }, parseInt(delay) || 0);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+/* ── COMPTEUR ANIMÉ BLOC 4 ── */
+(function(){
+  var el = document.getElementById('chiffre-count');
+  var triggered = false;
+  var target = 38000;
+  var duration = 1800;
+  function easeOutExpo(t){ return t===1?1:1-Math.pow(2,-10*t); }
+  function formatNum(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00A0'); }
+  function animate(){
+    var start = performance.now();
+    function step(now){
+      var elapsed = now - start;
+      var progress = Math.min(elapsed/duration,1);
+      el.textContent = formatNum(easeOutExpo(progress)*target);
+      if(progress<1) requestAnimationFrame(step);
+      else el.innerHTML='38\u00A0000';
+    }
+    requestAnimationFrame(step);
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !triggered){ triggered=true; animate(); }
+    });
+  },{threshold:0.5});
+  obs.observe(el);
+})();
+</script>
+</body>
+</html>
